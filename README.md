@@ -194,7 +194,7 @@
             <div class="timeline-item">
                 <div class="location-title">✈️ 抵達與入住飯店</div>
                 <div class="guide-text">從成田搭乘 Skyliner 轉總武線至南行德。先卸下行李，準備輕裝出遊！</div>
-                <a href="https://www.google.com/maps/dir/?api=1&destination=D・レガーロ+Minamigyōtoku&travelmode=driving" target="_blank" class="nav-btn"><span>🚗</span>導航至飯店</a>
+                <a href="<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.350962920174!2d139.90492204006253!3d35.66835933079531!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60187d883c971c2d%3A0x1dd6a42b7ae95bdc!2z5pel5pys44CSMjcyLTAxMzggQ2hpYmEsIEljaGlrYXdhLCBNaW5hbWlnecWNdG9rdSwgMi1jaMWNbWXiiJIyMSBE44O744Os44Ks44O844Ot!5e0!3m2!1szh-TW!2stw!4v1778826459311!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>" target="_blank" class="nav-btn"><span>🚗</span>導航至飯店</a>
             </div>
 
             <div class="timeline-item">
@@ -303,7 +303,7 @@
                 交通：搭乘東西線至「南行德」站
                 <li><span class="tag buy">🔖 入住憑證號碼：</span></li>
             </ul>
-            <a href="[https://maps.app.goo.gl/6ouHWvNahBLUjwXb6](https://maps.app.goo.gl/6e3WgBxjUSCTpVAi7)" target="_blank" class="nav-btn-link" style="width: 100%; text-align: center; justify-content: center; box-sizing: border-box;">🚗 一鍵導航回飯店</a>
+            <a href="[<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.350962920174!2d139.90492204006253!3d35.66835933079531!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60187d883c971c2d%3A0x1dd6a42b7ae95bdc!2z5pel5pys44CSMjcyLTAxMzggQ2hpYmEsIEljaGlrYXdhLCBNaW5hbWlnecWNdG9rdSwgMi1jaMWNbWXiiJIyMSBE44O744Os44Ks44O844Ot!5e0!3m2!1szh-TW!2stw!4v1778826459311!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>" target="_blank" class="nav-btn-link" style="width: 100%; text-align: center; justify-content: center; box-sizing: border-box;">🚗 一鍵導航回飯店</a>
         </div>
             </div>
         </div>
