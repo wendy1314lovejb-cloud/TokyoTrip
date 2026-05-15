@@ -301,6 +301,10 @@
                 <strong>🏨 D・レガーロ</strong><br>
                 地址：千葉縣市川市南行德 2-21<br>
                 交通：搭乘東西線至「南行德」站
+                <li><span class="tag buy">🔖 入住憑證號碼：</span></li>
+            </ul>
+            <a href="[https://maps.app.goo.gl/6ouHWvNahBLUjwXb6](https://maps.app.goo.gl/6e3WgBxjUSCTpVAi7)" target="_blank" class="nav-btn-link" style="width: 100%; text-align: center; justify-content: center; box-sizing: border-box;">🚗 一鍵導航回飯店</a>
+        </div>
             </div>
         </div>
 
