@@ -4,142 +4,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>2026 東京夢幻之旅 💜</title>
+    <title>東京夢幻之旅 💜</title>
     <style>
         :root {
-            --primary-color: #8A2BE2; /* 幻夢紫 */
-            --secondary-color: #DDA0DD; /* 淺紫 */
-            --bg-color: #F8F5FA; /* 極簡灰白紫 */
-            --card-bg: #FFFFFF;
+            --bg-color: #f4f0fa;
+            --card-bg: #ffffff;
+            --primary-dark: #2b2532; /* 酷洛米黑 */
+            --primary-purple: #8a4baf; /* 幻夢紫 */
+            --accent-pink: #f0a8d0; /* 童話粉 */
             --text-main: #333333;
-            --text-light: #666666;
-            --highlight-food: #FF69B4; /* 必吃美食粉色 */
-            --highlight-buy: #FFA500; /* 必買橘色 */
-            --highlight-alert: #E23D28; /* 重要紅色 */
+            --text-gray: #777777;
+            
+            /* 標籤顏色 */
+            --tag-food: #ff7b9c;
+            --tag-menu: #ff9f43;
+            --tag-buy: #1dd1a1;
+            --tag-alert: #ff4757;
         }
 
+        * { box-sizing: border-box; font-family: "PingFang TC", "Helvetica Neue", sans-serif; }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
             margin: 0;
             padding: 0;
-            padding-bottom: 70px; /* 給底部導覽列空間 */
-            -webkit-font-smoothing: antialiased;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding-bottom: 80px; /* 留給底部導覽列 */
         }
 
-        /* 頂部標題 */
+        /* 頂部標題列 */
         header {
-            background: linear-gradient(135deg, var(--primary-color), #4B0082);
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-purple));
             color: white;
-            padding: 20px 15px 15px;
+            padding: 20px 15px;
             text-align: center;
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
+            box-shadow: 0 4px 12px rgba(138, 75, 175, 0.3);
             position: sticky;
             top: 0;
             z-index: 100;
         }
-        
-        header h1 {
-            margin: 0;
-            font-size: 1.4rem;
-            letter-spacing: 1px;
-        }
 
-        /* 內容區塊 */
-        .container {
-            padding: 15px;
-            display: none; /* 預設隱藏，由 JS 控制顯示 */
-        }
-        .container.active {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
+        header h1 { margin: 0; font-size: 1.5rem; letter-spacing: 2px; }
+
+        /* 頁面切換容器 */
+        .page { display: none; padding: 15px; animation: fadeIn 0.4s ease; }
+        .page.active { display: block; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* 卡片設計 */
+        /* 卡片樣式 */
         .card {
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 8px rgba(138, 43, 226, 0.1);
-            border-left: 5px solid var(--secondary-color);
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 6px solid var(--primary-purple);
         }
 
-        .card h2 {
-            margin-top: 0;
-            font-size: 1.2rem;
-            color: var(--primary-color);
+        .card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px dashed #eee;
-            padding-bottom: 8px;
+            border-bottom: 1px dashed #e0e0e0;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
         }
 
-        .weather-badge {
-            font-size: 0.9rem;
-            background-color: var(--bg-color);
-            padding: 4px 8px;
-            border-radius: 10px;
-            color: var(--text-light);
-        }
+        .card-header h2 { margin: 0; font-size: 1.2rem; color: var(--primary-dark); }
+        .weather { font-size: 0.9rem; background: var(--bg-color); padding: 4px 10px; border-radius: 20px; color: var(--primary-purple); font-weight: bold; }
 
+        /* 行程內容 */
         .timeline-item {
-            margin: 12px 0;
+            margin-bottom: 20px;
             padding-left: 15px;
-            border-left: 2px solid var(--secondary-color);
+            border-left: 2px solid var(--accent-pink);
             position: relative;
         }
 
         .timeline-item::before {
-            content: '';
+            content: '💜';
             position: absolute;
-            left: -6px;
-            top: 5px;
-            width: 10px;
-            height: 10px;
-            background-color: var(--primary-color);
-            border-radius: 50%;
+            left: -10px;
+            top: 0;
+            font-size: 0.9rem;
+            background: white;
         }
 
-        /* 標籤設計 */
+        .location-title { font-weight: bold; font-size: 1.1rem; margin-bottom: 5px; color: var(--primary-purple); }
+        
+        /* 標籤系統 */
         .tag {
             display: inline-block;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.8rem;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
             font-weight: bold;
             color: white;
-            margin-right: 5px;
-            margin-bottom: 5px;
+            margin: 4px 4px 4px 0;
         }
-        .tag.food { background-color: var(--highlight-food); }
-        .tag.buy { background-color: var(--highlight-buy); }
-        .tag.alert { background-color: var(--highlight-alert); }
-        .tag.nav { background-color: #4285F4; }
+        .t-food { background-color: var(--tag-food); }
+        .t-menu { background-color: var(--tag-menu); }
+        .t-buy { background-color: var(--tag-buy); }
+        .t-alert { background-color: var(--tag-alert); }
 
-        /* 導航按鈕 */
-        .btn-nav {
+        .guide-text {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            background: #fdfafb;
+            padding: 8px;
+            border-radius: 8px;
+            margin-top: 5px;
+        }
+
+        /* 導航按鈕 (預設為自駕模式) */
+        .nav-btn {
             display: inline-flex;
             align-items: center;
-            background-color: #f0f0f0;
-            color: #333;
+            background-color: var(--primary-dark);
+            color: white;
             text-decoration: none;
-            padding: 6px 12px;
+            padding: 8px 14px;
             border-radius: 20px;
             font-size: 0.85rem;
-            margin-top: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-top: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            transition: transform 0.1s;
         }
-        .btn-nav span { margin-right: 5px; }
+        .nav-btn:active { transform: scale(0.95); }
+        .nav-btn span { margin-right: 6px; }
 
         /* 底部導覽列 */
         .bottom-nav {
@@ -147,244 +145,223 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: white;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             display: flex;
             justify-content: space-around;
-            padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            padding: 12px 0;
+            box-shadow: 0 -2px 15px rgba(0,0,0,0.08);
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
-            z-index: 100;
+            z-index: 1000;
         }
 
         .nav-item {
             text-align: center;
-            color: var(--text-light);
-            font-size: 0.8rem;
+            color: var(--text-gray);
+            font-size: 0.75rem;
             cursor: pointer;
             flex: 1;
         }
 
-        .nav-item.active {
-            color: var(--primary-color);
-            font-weight: bold;
-        }
+        .nav-item.active { color: var(--primary-purple); font-weight: bold; }
+        .nav-icon { font-size: 1.4rem; display: block; margin-bottom: 4px; }
 
-        .nav-icon {
-            font-size: 1.5rem;
-            display: block;
-            margin-bottom: 2px;
-        }
+        /* 工具區塊樣式 */
+        .tool-box { background: #fafafa; border-radius: 12px; padding: 15px; margin-bottom: 15px; border: 1px solid #eee; }
+        .input-group { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
+        input[type="number"] { width: 60%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; }
+        .result-text { font-size: 1.2rem; font-weight: bold; color: var(--primary-purple); }
 
-        /* 表格設計 */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-        th, td {
-            text-align: left;
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-            font-size: 0.9rem;
-        }
-        th { color: var(--primary-color); }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>💜 2026 東京夢幻之旅</h1>
+        <h1>💜 2026 東京夢幻之旅 💜</h1>
     </header>
 
-    <!-- 行程頁面 -->
-    <div id="itinerary" class="container active">
+    <!-- 頁面 1：行程卡片 -->
+    <div id="page-itinerary" class="page active">
+        
         <!-- Day 1 -->
         <div class="card">
-            <h2>Day 1: 10/26 (一) <span class="weather-badge">☀️ 18°C</span></h2>
-            <div class="timeline-item">
-                <strong>下午｜抵達與中目黑</strong><br>
-                12:10 抵達成田機場 ➔ 飯店放行李<br>
-                <a href="https://maps.google.com/?q=D・レガーロ+市川市" target="_blank" class="btn-nav"><span>📍</span>導航至飯店</a><br>
-                前往中目黑 (星巴克山手通店、小義大利 La vita)<br>
-                <a href="https://maps.google.com/?q=Starbucks+Reserve+Roastery+Tokyo" target="_blank" class="btn-nav"><span>📍</span>導航星巴克</a>
+            <div class="card-header">
+                <h2>Day 1: 10/26 (一)</h2>
+                <div class="weather">🌤 20°C</div>
             </div>
+            
             <div class="timeline-item">
-                <strong>晚上｜上野採買</strong><br>
-                阿美橫町逛街 <span class="tag buy">#必買伴手禮 OS Drug / 二木的菓子</span>
+                <div class="location-title">✈️ 抵達與入住飯店</div>
+                <div class="guide-text">從成田搭乘 Skyliner 轉總武線至南行德。先卸下行李，準備輕裝出遊！</div>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=D・レガーロ+Minamigyōtoku&travelmode=driving" target="_blank" class="nav-btn"><span>🚗</span>導航至飯店</a>
+            </div>
+
+            <div class="timeline-item">
+                <div class="location-title">☕ 中目黑 & 上野採買</div>
+                <div class="guide-text">漫步星巴克山手通店與小義大利 La vita。晚上前往上野阿美橫町大採購。</div>
+                <span class="tag t-buy">必買伴手禮</span> 藥妝與零食 (二木的菓子)<br>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=中目黑星巴克&travelmode=driving" target="_blank" class="nav-btn"><span>🚗</span>導航至中目黑</a>
             </div>
         </div>
 
         <!-- Day 2 -->
         <div class="card">
-            <h2>Day 2: 10/27 (二) <span class="weather-badge">☁️ 17°C</span></h2>
-            <div class="timeline-item">
-                <strong>上午｜淺草和服</strong><br>
-                江户和装工房 雅 (建議09:00首批) ➔ 淺草寺、雷門<br>
-                <a href="https://maps.google.com/?q=淺草寺" target="_blank" class="btn-nav"><span>📍</span>導航淺草</a>
+            <div class="card-header">
+                <h2>Day 2: 10/27 (二)</h2>
+                <div class="weather">☀️ 22°C</div>
             </div>
+            
             <div class="timeline-item">
-                <strong>下午｜抹茶與神塔</strong><br>
-                <span class="tag food">#必吃美食 Suzukien 7號濃抹茶</span><br>
-                今戶神社 (招財貓/求姻緣) ➔ 東京晴空塔
+                <div class="location-title">👘 淺草和服與抹茶甜點</div>
+                <span class="tag t-alert">重要預約代號</span> 江户和装工房 雅<br>
+                <span class="tag t-food">必吃美食</span> Suzukien 抹茶<br>
+                <span class="tag t-menu">必點菜單</span> 世界最濃 7 號抹茶冰淇淋<br>
+                <div class="guide-text">換上和服漫步雷門與今戶神社，感受傳統江戶風情。</div>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=淺草寺&travelmode=driving" target="_blank" class="nav-btn"><span>🚗</span>導航至淺草寺</a>
             </div>
+
             <div class="timeline-item">
-                <strong>晚餐｜深夜和牛</strong><br>
-                燒肉黑田 (澀谷) <span class="tag food">#必點菜單 極厚牛舌</span><br>
-                <span class="tag alert">#重要預約代號 需提前官網預約</span><br>
-                <a href="https://maps.google.com/?q=焼肉黒田+渋谷" target="_blank" class="btn-nav"><span>📍</span>導航燒肉黑田</a>
+                <div class="location-title">🥩 燒肉黑田 (澀谷)</div>
+                <span class="tag t-food">必吃美食</span> 頂級黑毛和牛<br>
+                <div class="guide-text">極致的深夜和牛饗宴，在熱鬧的澀谷區享受入口即化的美味。</div>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=燒肉黑田+澀谷&travelmode=driving" target="_blank" class="nav-btn"><span>🚗</span>導航至燒肉黑田</a>
             </div>
         </div>
 
         <!-- Day 3 & 4 -->
         <div class="card">
-            <h2>Day 3-4: 迪士尼夢幻雙日 <span class="weather-badge">🏰 16°C</span></h2>
-            <div class="timeline-item">
-                <strong>10/28 (三)｜海洋 (Sea)</strong><br>
-                開園直衝 Fantasy Springs <span class="tag buy">#必買 Duffy周邊</span>
+            <div class="card-header">
+                <h2>Day 3-4: 10/28-29</h2>
+                <div class="weather">🏰 21°C</div>
             </div>
+            
             <div class="timeline-item">
-                <strong>10/29 (四)｜樂園 (Land)</strong><br>
-                <span class="tag alert">#攻略 美女與野獸必買DPA</span><br>
-                <span class="tag food">#必吃 米奇鬆餅</span>
-            </div>
-            <div class="timeline-item">
-                <strong>🚌 交通秘訣</strong><br>
-                南行德(東西線) ➔ 葛西/浦安站 ➔ 轉乘巴士直達舞濱。
+                <div class="location-title">👑 迪士尼公主夢幻雙日</div>
+                <div class="guide-text">
+                    <strong>Day 3 海洋：</strong>主攻夢幻泉源，感受奇幻水都。<br>
+                    <strong>Day 4 樂園：</strong>走進童話城堡，尋找迪士尼公主們的蹤跡。
+                </div>
+                <span class="tag t-buy">必買伴手禮</span> 達菲熊周邊、米奇造型爆米花桶<br>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=東京迪士尼海洋&travelmode=driving" target="_blank" class="nav-btn"><span>🚗</span>導航至迪士尼</a>
             </div>
         </div>
 
         <!-- Day 5 -->
         <div class="card">
-            <h2>Day 5: 10/30 (五) <span class="weather-badge">🌇 19°C</span></h2>
-            <div class="timeline-item">
-                <strong>上午｜神宮與都廳</strong><br>
-                東京都廳觀景臺 (免費) ➔ 明治神宮
+            <div class="card-header">
+                <h2>Day 5: 10/30 (五)</h2>
+                <div class="weather">🌤 19°C</div>
             </div>
+            
             <div class="timeline-item">
-                <strong>午餐｜高空燒肉</strong><br>
-                敘敘苑 (東京歌劇城 53F)<br>
-                <span class="tag food">#必點菜單 午間套餐</span> <span class="tag alert">#重要預約代號 確認Email窗邊席</span><br>
-                <a href="https://maps.google.com/?q=敘敘苑+東京歌劇城" target="_blank" class="btn-nav"><span>📍</span>導航敘敘苑</a>
+                <div class="location-title">🏙 神宮與高空燒肉</div>
+                <div class="guide-text">早晨至明治神宮散策，午餐於歌劇城 53F 享用燒肉。</div>
+                <span class="tag t-alert">重要預約代號</span> 敘敘苑 (請確認窗邊席 Email)<br>
+                <span class="tag t-menu">必點菜單</span> 敘敘苑超值午間套餐<br>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=敘敘苑+東京歌劇城&travelmode=driving" target="_blank" class="nav-btn"><span>🚗</span>導航至敘敘苑</a>
             </div>
+
             <div class="timeline-item">
-                <strong>下午至晚上｜新宿與澀谷</strong><br>
-                原宿竹下通 ➔ 伊勢丹新宿 ➔ 澀谷 SKY 夜景 ➔ 歌舞伎町<br>
-                <span class="tag alert">#攻略 澀谷SKY需提早一個月購票</span>
+                <div class="location-title">🌃 澀谷 SKY 夜景</div>
+                <div class="guide-text">傍晚前往原宿與新宿逛街，晚上登上澀谷 SKY 俯瞰絕美東京夜景，再至歌舞伎町散策。</div>
+                <span class="tag t-alert">重要預約代號</span> 澀谷 SKY 門票憑證<br>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=SHIBUYA+SKY&travelmode=driving" target="_blank" class="nav-btn"><span>🚗</span>導航至澀谷SKY</a>
             </div>
         </div>
 
         <!-- Day 6 -->
         <div class="card">
-            <h2>Day 6: 10/31 (六) <span class="weather-badge">✈️ 15°C</span></h2>
+            <div class="card-header">
+                <h2>Day 6: 10/31 (六)</h2>
+                <div class="weather">✈️ 18°C</div>
+            </div>
+            
             <div class="timeline-item">
-                <strong>上午｜準備歸途</strong><br>
-                08:15 離開飯店 ➔ 成田機場<br>
-                <span class="tag alert">#注意 09:25 前須完成報到</span><br>
-                免稅店 <span class="tag buy">#必買伴手禮 NY Perfect Cheese</span>
+                <div class="location-title">🎒 滿載而歸</div>
+                <div class="guide-text">早上 08:15 離開飯店，務必於 09:25 前完成機場報到手續。</div>
+                <span class="tag t-alert">重要預約代號</span> IT281 航班電子機票<br>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=成田國際機場&travelmode=driving" target="_blank" class="nav-btn"><span>🚗</span>導航至成田機場</a>
             </div>
         </div>
+
     </div>
 
-    <!-- 資訊頁面 -->
-    <div id="info" class="container">
+    <!-- 頁面 2：其他工具區塊 -->
+    <div id="page-tools" class="page">
+        
+        <!-- 航班與住宿 -->
         <div class="card">
-            <h2>✈️ 航班資訊</h2>
-            <p><strong>去程 (10/26 一)：</strong> IT280<br>08:00 高雄 (KHH) ➔ 12:10 成田 (NRT)</p>
-            <p><strong>回程 (10/31 六)：</strong> IT281<br>11:25 成田 (NRT) ➔ 15:05 高雄 (KHH)</p>
+            <h2>🛫 航班與住宿資訊</h2>
+            <div class="tool-box">
+                <strong>去程 (10/26)：</strong> IT280｜KHH 08:00 ➔ NRT 12:10<br>
+                <strong>回程 (10/31)：</strong> IT281｜NRT 11:25 ➔ KHH 15:05
+            </div>
+            <div class="tool-box">
+                <strong>🏨 D・レガーロ</strong><br>
+                地址：千葉縣市川市南行德 2-21<br>
+                交通：搭乘東西線至「南行德」站
+            </div>
         </div>
 
+        <!-- 匯率轉換器 -->
         <div class="card">
-            <h2>🏨 住宿資訊</h2>
-            <p><strong>D・レガーロ</strong></p>
-            <p>地址：〒272-0138 Chiba, Ichikawa, Minamigyōtoku, 2-chōme−21</p>
-            <a href="https://maps.google.com/?q=D・レガーロ+市川市" target="_blank" class="btn-nav"><span>📍</span>開啟地圖導航</a>
+            <h2>💴 日幣/台幣 快速轉換器</h2>
+            <div class="tool-box">
+                <p style="margin-top:0; font-size:0.85rem; color:#777;">*目前以匯率 0.21 計算</p>
+                <div class="input-group">
+                    <input type="number" id="jpyInput" placeholder="輸入日幣金額" oninput="convertCurrency()">
+                    <span class="result-text" id="twdOutput">NT$ 0</span>
+                </div>
+            </div>
         </div>
 
+        <!-- 緊急聯絡電話 -->
         <div class="card">
-            <h2>📞 緊急聯絡與工具</h2>
-            <p>報警：110 ｜ 急救：119</p>
-            <p>駐日經濟文化代表處：+81-3-3280-7811</p>
-        </div>
-    </div>
-
-    <!-- 記帳/預算頁面 -->
-    <div id="budget" class="container">
-        <div class="card">
-            <h2>💱 匯率計算</h2>
-            <p>目前預估：<strong>100 日幣 (JPY) ≈ 21 台幣 (TWD)</strong></p>
+            <h2>☎️ 緊急聯絡電話</h2>
+            <div class="tool-box">
+                • 報警：<a href="tel:110" style="color:var(--primary-purple); font-weight:bold;">110</a><br><br>
+                • 急救/消防：<a href="tel:119" style="color:var(--primary-purple); font-weight:bold;">119</a><br><br>
+                • 台北駐日經濟文化代表處：<br>
+                <a href="tel:+81332807811" style="color:var(--primary-purple); font-weight:bold;">+81-3-3280-7811</a>
+            </div>
         </div>
 
-        <div class="card">
-            <h2>💰 預算表 (JPY)</h2>
-            <table>
-                <tr>
-                    <th>項目</th>
-                    <th>預估</th>
-                    <th>實際</th>
-                </tr>
-                <tr>
-                    <td>餐費 (含燒肉)</td>
-                    <td>60,000</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>交通 (儲值)</td>
-                    <td>15,000</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>門票與體驗</td>
-                    <td>25,000</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>購物伴手禮</td>
-                    <td>50,000</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><strong>總預算</strong></td>
-                    <td><strong>150,000</strong></td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
     </div>
 
     <!-- 底部導覽列 -->
     <div class="bottom-nav">
-        <div class="nav-item active" onclick="switchTab('itinerary', this)">
+        <div class="nav-item active" onclick="switchTab('page-itinerary', this)">
             <span class="nav-icon">📅</span>
             行程表
         </div>
-        <div class="nav-item" onclick="switchTab('info', this)">
-            <span class="nav-icon">ℹ️</span>
-            行前資訊
-        </div>
-        <div class="nav-item" onclick="switchTab('budget', this)">
-            <span class="nav-icon">👛</span>
-            記帳本
+        <div class="nav-item" onclick="switchTab('page-tools', this)">
+            <span class="nav-icon">🧰</span>
+            實用工具
         </div>
     </div>
 
     <script>
-        function switchTab(tabId, element) {
-            // 隱藏所有內容
-            document.querySelectorAll('.container').forEach(el => {
-                el.classList.remove('active');
-            });
-            // 移除所有標籤的 active 狀態
-            document.querySelectorAll('.nav-item').forEach(el => {
-                el.classList.remove('active');
-            });
+        // 切換頁面功能
+        function switchTab(pageId, element) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
             
-            // 顯示選中的內容並加入 active 狀態
-            document.getElementById(tabId).classList.add('active');
+            document.getElementById(pageId).classList.add('active');
             element.classList.add('active');
-            
-            // 將畫面滾動回最上方
             window.scrollTo(0, 0);
+        }
+
+        // 匯率轉換功能 (假設匯率為 0.21)
+        function convertCurrency() {
+            const jpy = document.getElementById('jpyInput').value;
+            const rate = 0.21;
+            if(jpy) {
+                const twd = Math.round(jpy * rate);
+                document.getElementById('twdOutput').innerText = `NT$ ${twd}`;
+            } else {
+                document.getElementById('twdOutput').innerText = `NT$ 0`;
+            }
         }
     </script>
 </body>
